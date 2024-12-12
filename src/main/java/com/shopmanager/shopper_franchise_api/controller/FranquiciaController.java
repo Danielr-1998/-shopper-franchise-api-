@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/api/franquicias")
 public class FranquiciaController {
@@ -15,7 +19,13 @@ public class FranquiciaController {
     @Autowired
     private FranquiciaService franquiciaService;
 
-    // Endpoint para agregar una nueva franquicia
+    /**
+     * Endpoint para agregar una nueva franquicia
+     *
+     * @param franquicia objeto de la franquicia a agregar
+     * @return la franquicia agregada
+     */
+    @Operation(summary = "Agregar una nueva franquicia")
     @PostMapping
     public Franquicia agregarFranquicia(@RequestBody Franquicia franquicia) {
         return franquiciaService.agregarFranquicia(franquicia);
