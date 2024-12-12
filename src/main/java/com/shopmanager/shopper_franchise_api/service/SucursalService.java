@@ -7,6 +7,8 @@ import com.shopmanager.shopper_franchise_api.repository.SucursalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -73,5 +75,26 @@ public class SucursalService {
 
         // Actualizar la sucursal
         return sucursalRepository.save(sucursal);
+    }
+    /**
+     * Obtener el producto con más stock en una sucursal.
+     *
+     * @param sucursalId ID de la sucursal
+     * @return El producto con más stock en la sucursal
+     */
+    public Producto obtenerProductoConMasStock(Long sucursalId) {
+        // Buscar la sucursal por su ID
+        Sucursal sucursal = sucursalRepository.findById(sucursalId)
+                .orElseThrow(() -> new RuntimeException("Sucursal no encontrada"));
+
+        // Obtener los productos de la sucursal
+        List<Producto> productos = sucursal.getProductos();
+
+        // Encontrar el producto con más stock (usando un comparador)
+        Optional<Producto> productoConMasStock = productos.stream()
+                .max(Comparator.comparingInt(Producto::getCantidadEnStock));
+
+        // Retornar el producto con más stock, si existe
+        return productoConMasStock.orElseThrow(() -> new RuntimeException("No hay productos disponibles en esta sucursal"));
     }
 }

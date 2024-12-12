@@ -40,4 +40,14 @@ public class SucursalController {
     public Producto modificarStock(@PathVariable Long productoId, @RequestParam int nuevaCantidad) {
         return sucursalService.modificarStock(productoId, nuevaCantidad);
     }
+
+
+    /**
+     * Endpoint para obtener el producto con más stock en una sucursal
+     */
+    @Operation(summary = "Obtener el producto con más stock de una sucursal")
+    @GetMapping("/{sucursalId}/producto-mas-stock")
+    public Producto obtenerProductoConMasStock(@PathVariable Long sucursalId) {
+        return sucursalService.obtenerProductoConMasStock(sucursalId);
+    }
 }
