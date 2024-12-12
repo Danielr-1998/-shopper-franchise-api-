@@ -1,22 +1,18 @@
 package com.shopmanager.shopper_franchise_api.model;
 
-
 import jakarta.persistence.Entity;
-import java.util.List;
-
-import jakarta.persistence.*;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-public class Franquicia {
+public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "franquicia")
-    private List<Sucursal> sucursales;
+    private int cantidadEnStock;
 
     // Getters y Setters
 
@@ -36,11 +32,11 @@ public class Franquicia {
         this.nombre = nombre;
     }
 
-    public List<Sucursal> getSucursales() {
-        return sucursales;
+    public int getCantidadEnStock() {
+        return cantidadEnStock;
     }
 
-    public void setSucursales(List<Sucursal> sucursales) {
-        this.sucursales = sucursales;
+    public void setCantidadEnStock(int cantidadEnStock) {
+        this.cantidadEnStock = cantidadEnStock;
     }
 }
