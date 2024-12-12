@@ -97,6 +97,12 @@ docker run -p 8080:8080 shopper-franchise-api
 La aplicación estará accesible en http://localhost:8080.
 
 ---
+## AWS  Design
+
+<picture class="container_image-home" data-aos="zoom-in">
+                <img class="image_home" src="./img.png" alt="Ilustración mujer y plantas">
+</picture>
+---
 
 ## Contribución 🤝
 
