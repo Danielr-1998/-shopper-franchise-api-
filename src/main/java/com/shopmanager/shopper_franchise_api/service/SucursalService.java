@@ -19,6 +19,20 @@ public class SucursalService {
     private ProductoRepository productoRepository;
 
     /**
+     * Modificar la cantidad en stock de un producto
+     */
+    public Producto modificarStock(Long productoId, int nuevaCantidad) {
+        // Buscar el producto por su ID
+        Producto producto = productoRepository.findById(productoId)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        // Actualizar la cantidad en stock del producto
+        producto.setCantidadEnStock(nuevaCantidad);
+
+        // Guardar el producto con la nueva cantidad
+        return productoRepository.save(producto);
+    }
+    /**
      * Agregar un nuevo producto a una sucursal
      */
     public Sucursal agregarProducto(Long sucursalId, Producto producto) {

@@ -31,4 +31,13 @@ public class SucursalController {
     public Sucursal eliminarProducto(@PathVariable Long sucursalId, @PathVariable Long productoId) {
         return sucursalService.eliminarProducto(sucursalId, productoId);
     }
+
+    /**
+     * Endpoint para modificar la cantidad en stock de un producto en una sucursal
+     */
+    @Operation(summary = "Modificar la cantidad en stock de un producto")
+    @PatchMapping("/productos/{productoId}")
+    public Producto modificarStock(@PathVariable Long productoId, @RequestParam int nuevaCantidad) {
+        return sucursalService.modificarStock(productoId, nuevaCantidad);
+    }
 }

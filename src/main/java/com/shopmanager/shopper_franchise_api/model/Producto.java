@@ -1,6 +1,7 @@
 package com.shopmanager.shopper_franchise_api.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Producto {
@@ -14,6 +15,8 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "sucursal_id")
+    @JsonBackReference // Evita la recursión infinita al serializar la referencia a la sucursal
+
     private Sucursal sucursal;
 
     // Getters y Setters

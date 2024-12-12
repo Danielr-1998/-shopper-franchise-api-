@@ -2,6 +2,7 @@ package com.shopmanager.shopper_franchise_api.model;
 
 
 import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ public class Franquicia {
     private String nombre;
 
     @OneToMany(mappedBy = "franquicia", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Evita la recursión infinita al serializar la lista de sucursales
+
     private List<Sucursal> sucursales = new ArrayList<>(); // Relación con Sucursal
 
 

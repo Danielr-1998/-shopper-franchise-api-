@@ -2,6 +2,7 @@ package com.shopmanager.shopper_franchise_api.model;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Sucursal {
@@ -12,6 +13,8 @@ public class Sucursal {
     private String nombre;
 
     @ManyToOne
+    @JsonBackReference // Evita la recursión infinita al serializar la referencia a la franquicia
+
     @JoinColumn(name = "franquicia_id")
     private Franquicia franquicia;
 
