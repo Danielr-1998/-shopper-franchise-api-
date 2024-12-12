@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/franquicias")
 public class FranquiciaController {
@@ -37,5 +39,14 @@ public class FranquiciaController {
     @PostMapping("/{franquiciaId}/sucursales")
     public Franquicia agregarSucursal(@PathVariable Long franquiciaId, @RequestBody Sucursal sucursal) {
         return franquiciaService.agregarSucursal(franquiciaId, sucursal);
+    }
+
+    /**
+     * Endpoint para obtener todas las franquicias
+     */
+    @Operation(summary = "Obtener todas las franquicias")
+    @GetMapping
+    public List<Franquicia> obtenerTodasLasFranquicias() {
+        return franquiciaService.obtenerTodasLasFranquicias();
     }
 }

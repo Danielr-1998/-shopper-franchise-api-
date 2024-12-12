@@ -4,15 +4,19 @@ package com.shopmanager.shopper_franchise_api.service;
 import com.shopmanager.shopper_franchise_api.model.Franquicia;
 import com.shopmanager.shopper_franchise_api.model.Sucursal;
 import com.shopmanager.shopper_franchise_api.repository.FranquiciaRepository;
+import com.shopmanager.shopper_franchise_api.repository.SucursalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FranquiciaService {
 
     @Autowired
     private FranquiciaRepository franquiciaRepository;
-
+    @Autowired
+    private SucursalRepository sucursalRepository;
     public Franquicia agregarFranquicia(Franquicia franquicia) {
         return franquiciaRepository.save(franquicia);
     }
@@ -29,5 +33,8 @@ public class FranquiciaService {
 
         // Guardar la franquicia con la nueva sucursal
         return franquiciaRepository.save(franquicia);
+    }
+    public List<Franquicia> obtenerTodasLasFranquicias() {
+        return franquiciaRepository.findAll();
     }
 }

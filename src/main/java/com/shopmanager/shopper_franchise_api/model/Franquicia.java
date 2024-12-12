@@ -2,6 +2,8 @@ package com.shopmanager.shopper_franchise_api.model;
 
 
 import jakarta.persistence.Entity;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -10,13 +12,15 @@ import jakarta.persistence.*;
 @Entity
 public class Franquicia {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "franquicia")
-    private List<Sucursal> sucursales;
+    @OneToMany(mappedBy = "franquicia", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sucursal> sucursales = new ArrayList<>(); // Relación con Sucursal
+
 
     // Getters y Setters
 
@@ -35,6 +39,7 @@ public class Franquicia {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 
     public List<Sucursal> getSucursales() {
         return sucursales;
